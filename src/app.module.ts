@@ -5,6 +5,10 @@ import { GenreModule } from './genre/genre.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Genre} from "./entities/genre.entity";
 import {ConfigModule} from "@nestjs/config";
+import { MovieController } from './movie/movie.controller';
+import { MovieService } from './movie/movie.service';
+import { MovieModule } from './movie/movie.module';
+import {Movie} from "./entities/movie.entity";
 
 @Module({
   imports: [GenreModule,
@@ -16,9 +20,10 @@ import {ConfigModule} from "@nestjs/config";
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [Genre],
+      entities: [Genre,Movie],
       synchronize: true,
-    }),],
+    }),
+    MovieModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Movie} from "./movie.entity";
 
 @Entity('genres')
 export class Genre{
@@ -8,4 +9,7 @@ export class Genre{
     name: string;
     @Column()
     description: string;
+
+    @OneToMany(()=>Movie, movie=>movie.genre)
+    movies: Movie[];
 }
